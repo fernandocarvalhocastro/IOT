@@ -1,0 +1,141 @@
+[
+    {
+        "id": "915947a.676feb8",
+        "type": "tab",
+        "label": "PS_RM76349"
+    },
+    {
+        "id": "a2b8ed56.62a018",
+        "type": "mqtt-broker",
+        "z": "",
+        "broker": "10.20.61.61",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    },
+    {
+        "id": "15ad8a6b.6015ae",
+        "type": "http request",
+        "z": "915947a.676feb8",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://10.20.61.61:1880/professor",
+        "tls": "",
+        "x": 245,
+        "y": 207,
+        "wires": [
+            [
+                "a45e7b6c.ae12a",
+                "d1c217fe.a85708"
+            ]
+        ]
+    },
+    {
+        "id": "bf8df618.ba26f",
+        "type": "inject",
+        "z": "915947a.676feb8",
+        "name": "",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 95,
+        "y": 112,
+        "wires": [
+            [
+                "15ad8a6b.6015ae"
+            ]
+        ]
+    },
+    {
+        "id": "f4b6a34e.87b2f8",
+        "type": "http response",
+        "z": "915947a.676feb8",
+        "name": "",
+        "x": 641,
+        "y": 65,
+        "wires": []
+    },
+    {
+        "id": "429d9683.0bb9f8",
+        "type": "debug",
+        "z": "915947a.676feb8",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 626,
+        "y": 202,
+        "wires": []
+    },
+    {
+        "id": "a45e7b6c.ae12a",
+        "type": "mqtt out",
+        "z": "915947a.676feb8",
+        "name": "",
+        "topic": "fiap/maquina44/RM76349/professor",
+        "qos": "",
+        "retain": "",
+        "broker": "a2b8ed56.62a018",
+        "x": 566,
+        "y": 361,
+        "wires": []
+    },
+    {
+        "id": "d3611c32.7f5bb8",
+        "type": "mqtt in",
+        "z": "915947a.676feb8",
+        "name": "",
+        "topic": "fiap/maquina44/RM76349/resposta",
+        "qos": "1",
+        "broker": "a2b8ed56.62a018",
+        "x": 190,
+        "y": 467,
+        "wires": [
+            [
+                "8afb436f.b604d8"
+            ]
+        ]
+    },
+    {
+        "id": "8afb436f.b604d8",
+        "type": "debug",
+        "z": "915947a.676feb8",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 576,
+        "y": 471,
+        "wires": []
+    },
+    {
+        "id": "d1c217fe.a85708",
+        "type": "function",
+        "z": "915947a.676feb8",
+        "name": "Converte JSON em numero",
+        "func": "var obj = JSON.parse(msg.payload.trim());\nif(\"value\" in obj){\n    msg.payload = parseInt(obj.value);\n}else{\n    msg.payload = undefined;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 434,
+        "y": 112,
+        "wires": [
+            [
+                "f4b6a34e.87b2f8",
+                "429d9683.0bb9f8"
+            ]
+        ]
+    }
+]
