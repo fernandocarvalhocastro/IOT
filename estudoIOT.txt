@@ -1,0 +1,439 @@
+1) Internet das coisas é um cenário onde dispositivos com capacidade computacional (processamento) estão conectados com sensores e atuadores na internet, trocando informações de maneira global.
+
+2) Existem diversas tecnologias habilitadoras, dentre as quais estudamos:
+- Tecnologia de identificação : RFID e Leitor de QrCode/Cód.Barras, por exemplo.
+- Tecnologias M2M(Machine to Machine): São tecnologias de comunicação entre dispositivos
+- Tecnologia pervasiva: que permite processamento local das informações, criando o conceito de objeto inteligente.
+- Tecnologia de sensoriamento e interação: Sensores e atuadores que interagem com o ambiente.
+
+3) Existem diversos problemas, dentre eles podemos citar:
+- Integração entre diferentes dispositivos (atualmente não existe um protocolo único que conecte dispositivos de diferentes fabricantes). Não temos como garantir que dispositivos do fabricante A conversem com o do fabricante B em escala global.
+- Segurança (Por estar conectado, está sussetivel a ataques hackers. Dificuldade para garantir autenticidade e privacidade dos dados)
+
+4)Smart Grid é uma rede de energia elétrica sustentável, eficiente e inteligente que integra consumidores, geradores e ambos de modo seguro, podendo calcular valores de fornecimento por demanda e oferta, permitindo que usuários da rede também possam vender a energia armazenada e não utilizada(pequenos distribuidores). O mesmo sistema poderia ser utilizado para outros serviços públicos, como água.
+
+5) A rede de topología Mesh permite que todos dispositivos troquem mensagem entre sí na rede através de roteadores, caso o emissor e receptor não estejam diretamente conectados. Já a rede star permite apenas comunicação ponto-a-ponto, ou seja, de um dispositivo central para os periféricos.
+Exemplo de rede Mash: ZigBee
+Exemplo de rede Star: Bluetooth
+
+6) Sensores são dispositivos que captam do meio ambiente informações e convertem para sinal elétrico. (Ex.: LDR, Sensor magnético, sensor de pressão, etc.)
+Os atuadores são dispositivos que realizam uma determinada ação a fim de modificar o ambiente (Ex.: Relés, Leds, etc.)
+
+7) Node.js é um ambiente de compilação e execução para a linguagem JavaScript rodar no servidor, caracterizado por ter apenas uma thread e ser orientada a eventos. No contexto IoT, ela é responsável por processar as solicitações dos dispositivos de maneira eficaz e exigindo pouco uso computacional para os serviços consumidos.
+
+8)- O servidor Node.js é baseado em evento, e utiliza uma única thread para tratar todos os eventos, exigindo assim pouco uso de memória do servidor. Um servidor tradicional executa uma nova thread a cada solicitação, exigindo alto consumo de memória para tratamento das solicitações.
+-O Node.Js utiliza javascript do lado do servidor
+-O Node.js não está focado em atender um protocolo ou serviço específico.
+
+9)
+RFID: Identificação
+Cód.Barras: Identificação
+Zigbee: M2M
+Bluetooth: M2M
+PLC: M2M
+Arduino: Computação pervasiva
+RaspberryPi: Computação pervasiva
+Wifi: M2M
+
+10)Sim, é possível desde que ambos utilizem um mesmo protocolo de comunicação para troca de mensagem entre eles, assim coordenando as 2 aplicações.
+
+
+
+1) Podemos separar em:
+- Redes de sensores: interliga diversos dispositivos que captam o meio externo através de sensores , e executam ações através dos atuadores.
+Geralmente estão em uma rede local, comunicando-se com o gateway, que possuem acesso a internet.
+
+- Rede de transmissão: Tem o papel de integrar os pequenos sistemas inteligentes à internet, convertendo os protocolos de transporte de cada dispositivos para TCP/IP (Gateways)
+
+- Rede de aplicações: Dispositivo de interface do usuários ( web, dispositivo móvel, etc.)
+
+
+2) 
+a) função de configuração do arduino
+b) laço infinito que é executado enquanto o arduino está ligado - while(true)
+c) função de espera que recebe um int (espera por x milisegundos)
+d) Lê uma entrada analógica do arduino
+e) Lê uma entrada digital
+f) Escreve em uma saída digital nível alto ou baixo
+g) Escreve em uma saída analógica (PWM) do arduino de 0 a 255.
+
+3)- O servidor Node.js é baseado em evento, e utiliza uma única thread para tratar todos os eventos, exigindo assim pouco uso de memória do servidor. Um servidor tradicional executa uma nova thread a cada solicitação, exigindo alto consumo de memória para tratamento das solicitações.
+-O Node.Js utiliza javascript do lado do servidor
+-O Node.js não está focado em atender um protocolo ou serviço específico.
+
+
+
+
+
+
+
+[
+    {
+        "id": "e7f8ad8f.2cb938",
+        "type": "tab",
+        "label": "Exercicio04"
+    },
+    {
+        "id": "f99359f7.e1499",
+        "type": "tab",
+        "label": "Exercicio05"
+    },
+    {
+        "id": "fe6a46a1.7f051",
+        "type": "mqtt-broker",
+        "z": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    },
+    {
+        "id": "8648e319.5c5c38",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "Helvetica Neue",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "Helvetica Neue",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "Helvetica Neue"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                }
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "f74e24c4.11411",
+        "type": "mqtt-broker",
+        "z": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    },
+    {
+        "id": "d7f3f982.ae04e8",
+        "type": "mqtt in",
+        "z": "e7f8ad8f.2cb938",
+        "name": "",
+        "topic": "fiap/aluno/nota",
+        "qos": "0",
+        "broker": "fe6a46a1.7f051",
+        "x": 213,
+        "y": 174,
+        "wires": [
+            [
+                "5693fdd5.7c8d0c"
+            ]
+        ]
+    },
+    {
+        "id": "5693fdd5.7c8d0c",
+        "type": "change",
+        "z": "e7f8ad8f.2cb938",
+        "name": "grava nota recebida do mqtt",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nota",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 550,
+        "y": 175,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9c55a6b2.82ad38",
+        "type": "http in",
+        "z": "e7f8ad8f.2cb938",
+        "name": "",
+        "url": "/nota",
+        "method": "get",
+        "swaggerDoc": "",
+        "x": 197,
+        "y": 289,
+        "wires": [
+            [
+                "e8c7e868.66cfc8"
+            ]
+        ]
+    },
+    {
+        "id": "e8c7e868.66cfc8",
+        "type": "change",
+        "z": "e7f8ad8f.2cb938",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "nota",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 401,
+        "y": 366,
+        "wires": [
+            [
+                "87c4a279.e272f"
+            ]
+        ]
+    },
+    {
+        "id": "87c4a279.e272f",
+        "type": "http response",
+        "z": "e7f8ad8f.2cb938",
+        "name": "",
+        "x": 599,
+        "y": 284,
+        "wires": []
+    },
+    {
+        "id": "ccd1be92.074c4",
+        "type": "inject",
+        "z": "e7f8ad8f.2cb938",
+        "name": "",
+        "topic": "",
+        "payload": "{\"nota\":9}",
+        "payloadType": "json",
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "x": 209,
+        "y": 64,
+        "wires": [
+            [
+                "7db2a78d.7eb72"
+            ]
+        ]
+    },
+    {
+        "id": "7db2a78d.7eb72",
+        "type": "mqtt out",
+        "z": "e7f8ad8f.2cb938",
+        "name": "",
+        "topic": "fiap/aluno/nota",
+        "qos": "0",
+        "retain": "",
+        "broker": "fe6a46a1.7f051",
+        "x": 561,
+        "y": 61,
+        "wires": []
+    },
+    {
+        "id": "e715203e.18d438",
+        "type": "http in",
+        "z": "f99359f7.e1499",
+        "name": "",
+        "url": "/info/professor",
+        "method": "put",
+        "swaggerDoc": "",
+        "x": 230,
+        "y": 164,
+        "wires": [
+            [
+                "fddd04aa.8763c8",
+                "53746aaa.0a92a4"
+            ]
+        ]
+    },
+    {
+        "id": "fddd04aa.8763c8",
+        "type": "http response",
+        "z": "f99359f7.e1499",
+        "name": "",
+        "x": 518,
+        "y": 257,
+        "wires": []
+    },
+    {
+        "id": "53746aaa.0a92a4",
+        "type": "mqtt out",
+        "z": "f99359f7.e1499",
+        "name": "",
+        "topic": "fiap/aluno/info",
+        "qos": "",
+        "retain": "",
+        "broker": "fe6a46a1.7f051",
+        "x": 546,
+        "y": 159,
+        "wires": []
+    },
+    {
+        "id": "be272f7a.5aad",
+        "type": "mqtt in",
+        "z": "f99359f7.e1499",
+        "name": "",
+        "topic": "fiap/aluno/info",
+        "qos": "2",
+        "broker": "fe6a46a1.7f051",
+        "x": 204,
+        "y": 385,
+        "wires": [
+            [
+                "c1feb65.f717f48"
+            ]
+        ]
+    },
+    {
+        "id": "c1feb65.f717f48",
+        "type": "debug",
+        "z": "f99359f7.e1499",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 519,
+        "y": 384,
+        "wires": []
+    },
+    {
+        "id": "c70e1cf1.b14b68",
+        "type": "http request",
+        "z": "f99359f7.e1499",
+        "name": "",
+        "method": "PUT",
+        "ret": "txt",
+        "url": "localhost:1880/info/professor",
+        "tls": "",
+        "x": 380,
+        "y": 515,
+        "wires": [
+            [
+                "3d961a6c.30b746"
+            ]
+        ]
+    },
+    {
+        "id": "c2d297cf.644d",
+        "type": "inject",
+        "z": "f99359f7.e1499",
+        "name": "",
+        "topic": "",
+        "payload": "{\"professor\":\"Antonio\"}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 129,
+        "y": 516,
+        "wires": [
+            [
+                "c70e1cf1.b14b68"
+            ]
+        ]
+    },
+    {
+        "id": "3d961a6c.30b746",
+        "type": "http response",
+        "z": "f99359f7.e1499",
+        "name": "",
+        "x": 564,
+        "y": 515,
+        "wires": []
+    }
+]

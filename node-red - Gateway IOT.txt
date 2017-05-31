@@ -1,0 +1,302 @@
+[
+    {
+        "id": "ea05b972.75a328",
+        "type": "tab",
+        "label": "Gateway"
+    },
+    {
+        "id": "d2a55c68.d06f68",
+        "type": "tab",
+        "label": "Teste Gateway"
+    },
+    {
+        "id": "81ba5f64.e2a24",
+        "type": "tab",
+        "label": "Http"
+    },
+    {
+        "id": "abbe14e2.5f46c",
+        "type": "mqtt-broker",
+        "z": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    },
+    {
+        "id": "81374afc.448468",
+        "type": "inject",
+        "z": "ea05b972.75a328",
+        "name": "",
+        "topic": "",
+        "payload": "{\"luz\":600}",
+        "payloadType": "str",
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "x": 92,
+        "y": 70,
+        "wires": [
+            [
+                "f36ed10d.3b124"
+            ]
+        ]
+    },
+    {
+        "id": "d2fbcdc8.0eace",
+        "type": "mqtt out",
+        "z": "ea05b972.75a328",
+        "name": "",
+        "topic": "fiap/lab902/arduino07/luz",
+        "qos": "0",
+        "retain": "false",
+        "broker": "abbe14e2.5f46c",
+        "x": 648,
+        "y": 85,
+        "wires": []
+    },
+    {
+        "id": "d6af33da.68509",
+        "type": "mqtt in",
+        "z": "ea05b972.75a328",
+        "name": "",
+        "topic": "fiap/lab902/arduino07/led",
+        "qos": "1",
+        "broker": "abbe14e2.5f46c",
+        "x": 119,
+        "y": 297,
+        "wires": [
+            [
+                "5e032a0a.17f6f4"
+            ]
+        ]
+    },
+    {
+        "id": "8e6690a9.78fcf",
+        "type": "debug",
+        "z": "ea05b972.75a328",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 610,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "f36ed10d.3b124",
+        "type": "function",
+        "z": "ea05b972.75a328",
+        "name": "Receive Value from arduino",
+        "func": "//Passa a string recebida pelo arduino para JSON.\n obj = JSON.parse(msg.payload.trim());\n//Verifica se tem o campo luz dentro do objeto   \n    if(\"luz\" in obj){\n        //atribui ao payload somente o valor do \n        //atributo luz para poder retornar\n        msg.payload = obj.luz;\n    }else{\n        //senão não faz nada\n        return undefined;\n    }\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 344,
+        "y": 163,
+        "wires": [
+            [
+                "d2fbcdc8.0eace"
+            ]
+        ]
+    },
+    {
+        "id": "dc686566.d232d8",
+        "type": "comment",
+        "z": "ea05b972.75a328",
+        "name": "Descricao - arduino enviando dados",
+        "info": "Arduino está mandando no topico LUZ a informacao da porta analogica\n\nQOS = 0 -> Não garante entrega\nRetain = false -> não retem no servidor",
+        "x": 160,
+        "y": 31,
+        "wires": []
+    },
+    {
+        "id": "5e032a0a.17f6f4",
+        "type": "function",
+        "z": "ea05b972.75a328",
+        "name": "Formata comando do led",
+        "func": "msg.payload = {\"led\": parseInt(msg.payload)};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 363,
+        "y": 378,
+        "wires": [
+            [
+                "8e6690a9.78fcf"
+            ]
+        ]
+    },
+    {
+        "id": "3609362c.854212",
+        "type": "comment",
+        "z": "ea05b972.75a328",
+        "name": "Descricao - arduino recebendo dados",
+        "info": "Arduino está mandando no topico LUZ a informacao da porta analogica\n\nQOS = 1 -> média garantia de entrega\nRetain = false -> não retem no servidor",
+        "x": 604,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "b29a4bbc.13cc8",
+        "type": "mqtt in",
+        "z": "d2a55c68.d06f68",
+        "name": "",
+        "topic": "fiap/lab902/arduino07/luz",
+        "qos": "0",
+        "broker": "abbe14e2.5f46c",
+        "x": 196,
+        "y": 94,
+        "wires": [
+            [
+                "143c0b9d.03f19c"
+            ]
+        ]
+    },
+    {
+        "id": "143c0b9d.03f19c",
+        "type": "debug",
+        "z": "d2a55c68.d06f68",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 491,
+        "y": 92,
+        "wires": []
+    },
+    {
+        "id": "3cdbd573.49855a",
+        "type": "inject",
+        "z": "d2a55c68.d06f68",
+        "name": "",
+        "topic": "",
+        "payload": "200",
+        "payloadType": "num",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 125,
+        "y": 262,
+        "wires": [
+            [
+                "d1dfb165.8b0ee"
+            ]
+        ]
+    },
+    {
+        "id": "d1dfb165.8b0ee",
+        "type": "mqtt out",
+        "z": "d2a55c68.d06f68",
+        "name": "",
+        "topic": "fiap/lab902/arduino07/led",
+        "qos": "1",
+        "retain": "false",
+        "broker": "abbe14e2.5f46c",
+        "x": 552,
+        "y": 266,
+        "wires": []
+    },
+    {
+        "id": "1652dcc3.411b33",
+        "type": "http in",
+        "z": "81ba5f64.e2a24",
+        "name": "",
+        "url": "/luz",
+        "method": "get",
+        "swaggerDoc": "",
+        "x": 153,
+        "y": 288,
+        "wires": [
+            [
+                "2188c4f2.4e2b7c"
+            ]
+        ]
+    },
+    {
+        "id": "2188c4f2.4e2b7c",
+        "type": "function",
+        "z": "81ba5f64.e2a24",
+        "name": "Formata response",
+        "func": "msg.headers = {\n    \"Content-Type\" : \"application/json\",\n    \"Access-Control-Allow-Origin\":\"*\"\n}\nmsg.payload = {\"value\" : parseInt(flow.get(\"luz\"))}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 376,
+        "y": 367,
+        "wires": [
+            [
+                "2ae7faa6.e78f66",
+                "dc749df1.c99fa"
+            ]
+        ]
+    },
+    {
+        "id": "2ae7faa6.e78f66",
+        "type": "http response",
+        "z": "81ba5f64.e2a24",
+        "name": "",
+        "x": 614,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "6f7b6d07.dbd164",
+        "type": "mqtt in",
+        "z": "81ba5f64.e2a24",
+        "name": "",
+        "topic": "fiap/lab902/arduino07/luz",
+        "qos": "0",
+        "broker": "abbe14e2.5f46c",
+        "x": 166,
+        "y": 171,
+        "wires": [
+            [
+                "d1686c75.e5dce8"
+            ]
+        ]
+    },
+    {
+        "id": "d1686c75.e5dce8",
+        "type": "change",
+        "z": "81ba5f64.e2a24",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "luz",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 602,
+        "y": 174,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "dc749df1.c99fa",
+        "type": "debug",
+        "z": "81ba5f64.e2a24",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 599,
+        "y": 421,
+        "wires": []
+    }
+]

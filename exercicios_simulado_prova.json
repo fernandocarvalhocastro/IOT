@@ -1,0 +1,324 @@
+[
+    {
+        "id": "6e988851.041b38",
+        "type": "tab",
+        "label": "Flow 1"
+    },
+    {
+        "id": "f53f826f.8ba18",
+        "type": "tab",
+        "label": "Flow 2"
+    },
+    {
+        "id": "818a9976.ba7598",
+        "type": "tab",
+        "label": "Flow 3"
+    },
+    {
+        "id": "bc00491a.dbb438",
+        "type": "tab",
+        "label": "Flow 4"
+    },
+    {
+        "id": "69849160.8620a",
+        "type": "mqtt-broker",
+        "z": "",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": ""
+    },
+    {
+        "id": "76a10924.f8c378",
+        "type": "inject",
+        "z": "6e988851.041b38",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "x": 96,
+        "y": 67,
+        "wires": [
+            [
+                "3350d362.182e8c"
+            ]
+        ]
+    },
+    {
+        "id": "3350d362.182e8c",
+        "type": "function",
+        "z": "6e988851.041b38",
+        "name": "",
+        "func": "var nota = flow.get(\"nota\");\nif(!nota) nota = 1;\nmsg.payload = {nota:nota};\nif(++nota > 10) nota = 1;\nflow.set(\"nota\",nota);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 240,
+        "y": 123,
+        "wires": [
+            [
+                "72fd956f.550a8c"
+            ]
+        ]
+    },
+    {
+        "id": "72fd956f.550a8c",
+        "type": "mqtt out",
+        "z": "6e988851.041b38",
+        "name": "",
+        "topic": "fiap/aluno/nota",
+        "qos": "",
+        "retain": "",
+        "broker": "69849160.8620a",
+        "x": 406,
+        "y": 72,
+        "wires": []
+    },
+    {
+        "id": "80be06a9.6e8cf8",
+        "type": "mqtt in",
+        "z": "6e988851.041b38",
+        "name": "",
+        "topic": "fiap/aluno/nota",
+        "qos": "2",
+        "broker": "69849160.8620a",
+        "x": 142,
+        "y": 216,
+        "wires": [
+            [
+                "4ee19f74.fe686"
+            ]
+        ]
+    },
+    {
+        "id": "4ee19f74.fe686",
+        "type": "debug",
+        "z": "6e988851.041b38",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "false",
+        "x": 357,
+        "y": 226,
+        "wires": []
+    },
+    {
+        "id": "e2d6b182.db047",
+        "type": "inject",
+        "z": "f53f826f.8ba18",
+        "name": "",
+        "topic": "",
+        "payload": "{\"faltas\":3}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 109,
+        "y": 112,
+        "wires": [
+            [
+                "93f2b738.40c2f8"
+            ]
+        ]
+    },
+    {
+        "id": "93f2b738.40c2f8",
+        "type": "http request",
+        "z": "f53f826f.8ba18",
+        "name": "",
+        "method": "PUT",
+        "ret": "txt",
+        "url": "10.20.92.05:1880/info/professor",
+        "tls": "",
+        "x": 278,
+        "y": 58,
+        "wires": [
+            [
+                "84fa138.d1482f"
+            ]
+        ]
+    },
+    {
+        "id": "84fa138.d1482f",
+        "type": "debug",
+        "z": "f53f826f.8ba18",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "statusCode",
+        "x": 429,
+        "y": 133,
+        "wires": []
+    },
+    {
+        "id": "d094231f.45896",
+        "type": "mqtt in",
+        "z": "f53f826f.8ba18",
+        "name": "",
+        "topic": "fiap/aluno/info",
+        "qos": "2",
+        "broker": "69849160.8620a",
+        "x": 111,
+        "y": 207,
+        "wires": [
+            [
+                "f8c2ed1b.dbbc6"
+            ]
+        ]
+    },
+    {
+        "id": "f8c2ed1b.dbbc6",
+        "type": "debug",
+        "z": "f53f826f.8ba18",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 325,
+        "y": 198,
+        "wires": []
+    },
+    {
+        "id": "fe636908.b53fb8",
+        "type": "mqtt in",
+        "z": "818a9976.ba7598",
+        "name": "",
+        "topic": "fiap/aluno/nota",
+        "qos": "2",
+        "broker": "69849160.8620a",
+        "x": 157,
+        "y": 67,
+        "wires": [
+            [
+                "d1cdbc4c.7b66"
+            ]
+        ]
+    },
+    {
+        "id": "f23ff31d.f5add",
+        "type": "http in",
+        "z": "818a9976.ba7598",
+        "name": "",
+        "url": "/nota",
+        "method": "get",
+        "swaggerDoc": "",
+        "x": 108,
+        "y": 165,
+        "wires": [
+            [
+                "e4406c6c.8e0e"
+            ]
+        ]
+    },
+    {
+        "id": "d1cdbc4c.7b66",
+        "type": "change",
+        "z": "818a9976.ba7598",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "nota",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 340,
+        "y": 75,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9875f296.df9e6",
+        "type": "http response",
+        "z": "818a9976.ba7598",
+        "name": "",
+        "x": 385,
+        "y": 153,
+        "wires": []
+    },
+    {
+        "id": "e4406c6c.8e0e",
+        "type": "change",
+        "z": "818a9976.ba7598",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "nota",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 235,
+        "y": 236,
+        "wires": [
+            [
+                "9875f296.df9e6"
+            ]
+        ]
+    },
+    {
+        "id": "e824c69.0c1a138",
+        "type": "http in",
+        "z": "bc00491a.dbb438",
+        "name": "",
+        "url": "/info/professor",
+        "method": "put",
+        "swaggerDoc": "",
+        "x": 125,
+        "y": 104,
+        "wires": [
+            [
+                "259ef198.72541e",
+                "1dcf700c.9a3a3"
+            ]
+        ]
+    },
+    {
+        "id": "259ef198.72541e",
+        "type": "mqtt out",
+        "z": "bc00491a.dbb438",
+        "name": "",
+        "topic": "fiap/aluno/info",
+        "qos": "",
+        "retain": "",
+        "broker": "69849160.8620a",
+        "x": 431,
+        "y": 103,
+        "wires": []
+    },
+    {
+        "id": "1dcf700c.9a3a3",
+        "type": "http response",
+        "z": "bc00491a.dbb438",
+        "name": "",
+        "x": 416,
+        "y": 168,
+        "wires": []
+    }
+]
